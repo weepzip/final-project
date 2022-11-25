@@ -1,0 +1,22 @@
+.primary {
+  color: var(--secondary-text-color);
+  background: var(--primary-color);
+}
+
+.secondary {
+  color: var(--primary-text-color);
+  border-color: var(--primary-text-color);
+
+}
+
+.delete {
+  border-color: var(--reject-color);
+  background: var(--reject-color);
+  color: var(--secondary-text-color);
+}
+
+.submit {
+  border-color: var(--submit-color);
+  color: var(--secondary-text-color);
+  background: var(--submit-color);
+}

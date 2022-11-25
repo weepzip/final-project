@@ -1,0 +1,7 @@
+.new_post {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: var(--primary-gap);
+}

@@ -1,0 +1,15 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primary-gap);
+  border-radius: var(--primary-br);
+  background-color: var(--tertiary-bgc);
+}
+
+.comment > div {
+  padding: var(--primary-padding);
+}
+
+.comment > div:not(:last-child) {
+  border-bottom: 1px solid var(--light-gray);
+}

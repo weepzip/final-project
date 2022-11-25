@@ -1,0 +1,32 @@
+.post {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  background: var(--primary-bgc);
+  border-radius: var(--secondary-br);
+}
+
+.post > div {
+  padding: var(--primary-padding);
+  width: 100%;
+  height: fit-content;
+}
+
+.post > div:not(:last-child) {
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--primary-gap);
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primary-gap);
+}
