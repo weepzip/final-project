@@ -1,0 +1,9 @@
+.album {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  padding:var(--primary-padding);
+  border-radius: var(--primary-br);
+  background: var(--primary-bgc);
+}

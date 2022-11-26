@@ -1,5 +1,9 @@
 interface ILoadingStatuses {
-  [key: string]: string;
+  idle: string;
+  inProgress: string;
+  success: string;
+  failed: string;
+  earlyAdded: string;
 }
 
 export const LoadingStatuses: ILoadingStatuses = {
@@ -7,4 +11,5 @@ export const LoadingStatuses: ILoadingStatuses = {
   inProgress: "inProgress",
   success: "success",
   failed: "failed",
+  earlyAdded: "earlyAdded",
 };

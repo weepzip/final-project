@@ -1,0 +1,33 @@
+.container {
+  width: var(--layout-width);
+  margin: 0 auto;
+  padding: var(--layout-side-padding);
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: var(--secondary-gap);
+
+}
+
+.menu {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  align-items: center;
+  gap: var(--primary-gap);
+}
+
+.menu_item {
+  display: flex;
+}
+
+.menu_item > a {
+  padding: var(--primary-padding);
+  border-radius: var(--primary-br);
+}
+
+.menu_item > a:hover {
+  background: var(--hover-bgc);
+}
