@@ -40,9 +40,7 @@ export const fetchPost = createAsyncThunk<
 });
 
 type PutPost = {
-  data: {
-    body: IPost;
-  };
+  body: IPost;
 };
 
 export const updatePost = createAsyncThunk<
