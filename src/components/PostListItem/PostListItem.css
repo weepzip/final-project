@@ -8,6 +8,7 @@
   background: var(--primary-bgc);
   border-radius: var(--secondary-br);
   box-shadow: var(--main-shadow);
+  overflow: hidden;
 }
 
 .post > div {
@@ -26,6 +27,12 @@
   justify-content: flex-end;
   align-items: center;
   gap: var(--primary-gap);
+}
+
+.footer a {
+  padding: var(--primary-padding) var(--secondary-padding);
+  border-radius: var(--primary-br);
+  border: 1px solid var(--link-color)
 }
 
 .comments {

@@ -29,7 +29,8 @@ export const fetchComments = createAsyncThunk<
     comment.reply = [] as number[];
 
     for (let i = 0; i <= count; i++) {
-      const random = getRandom(response.data.length);
+      const random =
+        Number(comment.postId) * 5 - getRandom(response.data.length);
       comment.reply.push(random);
     }
   }

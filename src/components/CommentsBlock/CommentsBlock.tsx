@@ -31,21 +31,17 @@ export const CommentsBlock = ({
   return (
     <div className={s.comments_block}>
       <h2>Comments</h2>
-      {/* {commentsIds.map((id) => (
-        <Comment key={id} commentId={id} />
-      ))} */}
       {rawComments.map((comment) => {
         return (
           <>
             <Comment key={comment.id} commentId={comment.id} />
-            <div>{comment.reply?.join(", ")}</div>
-            {comment.reply?.length ? (
+            {!comment.reply?.length ? null : (
               <div className={s.comments_block}>
                 {comment.reply.map((id) => (
                   <Comment commentId={id} reply={true} />
                 ))}
               </div>
-            ) : null}
+            )}
           </>
         );
       })}

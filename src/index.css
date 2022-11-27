@@ -3,7 +3,7 @@
 :root {
   --primary-color: linear-gradient(135deg, #26F0D3 0%, #17FF41 100%);
   --secondary-color: #540F89;
-  --layout-width: 1200px;
+  --layout-width: 800px;
 
   --main-shadow: 1px 1px 1px 0 rgba(128, 128, 128, 0.2);
 
@@ -75,7 +75,7 @@
   }
 }
 
-.App[data-light-mode="dark"] {
+.layout[data-light-mode="dark"] {
   --primary-color: linear-gradient(135deg, #26f0d2ee 0%, #17FF41ee 100%);
 
   --primary-bgc: #333333;
