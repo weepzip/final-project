@@ -31,7 +31,7 @@ export const EditPost = (): JSX.Element | null => {
     return <Navigate to="notFound" replace />;
   }
 
-  if (!editingPost) return null;
+  if (!editingPost) return <div>Something went wrong</div>;
 
   const { title, body } = editingPost;
 

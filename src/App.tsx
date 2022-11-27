@@ -20,14 +20,16 @@ export const App = (): JSX.Element | null => {
         <Header />
         <div className={s.layout}>
           <Routes>
-            <Route index element={<Navigate to="posts" replace />} />
-            <Route path="posts" element={<PostsPage />} />
-            <Route path="posts/:postId" element={<PostPage />} />
-            <Route path="posts/:postId/edit" element={<EditPost />} />
-            <Route path="albums" element={<AlbumsPage />} />
-            <Route path="albums/:albumId" element={<AlbumPage />} />
-            <Route path="todos" element={<TodosPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/">
+              <Route index element={<Navigate to="posts" replace />} />
+              <Route path="posts" element={<PostsPage />} />
+              <Route path="posts/:postId" element={<PostPage />} />
+              <Route path="posts/:postId/edit" element={<EditPost />} />
+              <Route path="albums" element={<AlbumsPage />} />
+              <Route path="albums/:albumId" element={<AlbumPage />} />
+              <Route path="todos" element={<TodosPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
           </Routes>
         </div>
         <Slider />

@@ -21,18 +21,12 @@ export const Comment = ({
   }
 
   return (
-    <div className={`${s.comment} ${reply ? s.replied : null}`}>
+    <div className={`${s.comment} ${reply ? s.replied : ""}`}>
       <div className={s.header}>
         <h3>{comment.name}</h3>
       </div>
       <div className={s.body}>{comment.body}</div>
-      <div className={s.footer}>
-        {/* <span>
-          {comment.reply?.map((commentId) => (
-            <Comment commentId={commentId} />
-          ))}
-        </span> */}
-      </div>
+      <div className={s.footer}></div>
     </div>
   );
 };

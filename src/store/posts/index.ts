@@ -54,8 +54,6 @@ export const fetchPosts = createAsyncThunk<
     return rejectWithValue(`Error, response status: ${status.toString()}`);
   }
 
-  console.log(data);
-
   return response.data as IPost[];
 });
 
@@ -89,7 +87,7 @@ export const createPost = createAsyncThunk<
   const response = await axios.post<PostCreateResponse>(
     "https://jsonplaceholder.typicode.com/posts",
     {
-      body: JSON.stringify(newPost),
+      body: newPost,
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
       },
@@ -118,7 +116,8 @@ export const postsSlice = createSlice({
   }),
   reducers: {
     updatePostLocaly: (state, { payload }) => {
-      postsEntityAdapter.updateOne(state, payload);
+      console.log(payload);
+      postsEntityAdapter.upsertOne(state, payload);
     },
   },
   extraReducers: (builder) => {

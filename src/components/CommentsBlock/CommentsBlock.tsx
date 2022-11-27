@@ -37,7 +37,8 @@ export const CommentsBlock = ({
       {rawComments.map((comment) => {
         return (
           <>
-            <Comment commentId={comment.id} />
+            <Comment key={comment.id} commentId={comment.id} />
+            <div>{comment.reply?.join(", ")}</div>
             {comment.reply?.length ? (
               <div className={s.comments_block}>
                 {comment.reply.map((id) => (

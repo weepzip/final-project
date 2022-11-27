@@ -68,9 +68,9 @@ export const updatePost = createAsyncThunk<
     return rejectWithValue(LoadingStatuses.failed);
   }
 
-  dispatch(updatePostLocaly(response.data.body as IPost));
+  dispatch(updatePostLocaly(response.data.body));
 
-  return response.data.body as IPost;
+  return response.data.body;
 });
 
 export const postSlice = createSlice({
