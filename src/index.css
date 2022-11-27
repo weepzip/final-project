@@ -3,7 +3,7 @@
 :root {
   --primary-color: linear-gradient(135deg, #26F0D3 0%, #17FF41 100%);
   --secondary-color: #540F89;
-  --layout-width: 800px;
+  --layout-width: 768px;
 
   --main-shadow: 1px 1px 1px 0 rgba(128, 128, 128, 0.2);
 
@@ -55,7 +55,7 @@
   --title-font-weight: 700;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 768px) {
   :root {
     --layout-width: 100%;
   }
