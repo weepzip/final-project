@@ -1,0 +1,13 @@
+.todo {
+  display: flex;
+  flex-direction: row;
+  gap: calc(var(--primary-gap) / 2);
+  padding: var(--primary-padding);
+  border-radius: var(--primary-br);
+  background: var(--tertiary-bgc);
+  cursor: grab;
+}
+
+.drag {
+  background-color: var(--light-gray);
+}

@@ -2,7 +2,7 @@ import React from "react";
 import s from "./AlbumListItem.css";
 import { useAppSelector } from "../../hooks";
 import { selectAlbumById } from "../../store/albums/selectors";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface AlbumListItemProps {
   albumId: string | number;
@@ -17,8 +17,8 @@ export const AlbumListItem = ({
     return null;
   }
   return (
-    <Link to={`${albumId}`}>
+    <NavLink to={`${albumId}`}>
       <div className={s.album}>{album.title}</div>
-    </Link>
+    </NavLink>
   );
 };

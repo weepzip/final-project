@@ -27,6 +27,7 @@ export const AlbumsList = (): JSX.Element => {
 
   return (
     <div className={s.albums}>
+      <h2>Albums</h2>
       {albums.map((id) => (
         <AlbumListItem key={id} albumId={id} />
       ))}

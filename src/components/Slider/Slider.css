@@ -1,0 +1,45 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.back,
+.forward {
+  position: absolute;
+  height: 100%;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--primary-padding);
+  opacity: .2;
+  cursor: pointer;
+
+  color: white;
+  font-size: 72px;
+}
+
+.back {
+  background: linear-gradient(90deg, #22222288 0%, #22222200 100%);
+  left: 0;
+}
+.forward {
+  background: linear-gradient(90deg, #22222200 0%, #22222288 100%);
+  right: 0;
+}
+
+.back:hover,
+.forward:hover {
+  opacity: 1;
+}

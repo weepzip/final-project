@@ -63,12 +63,10 @@ module.exports = {
   output: {
     filename: "[name].hash.js", // выходной бандл
     path: path.resolve(__dirname, "./dist/"),
-    // publicPath: "/dist/",
+    publicPath: "/",
   },
   devServer: {
-    static: {
-      directory: path.join(__dirname, "/dist/"),
-    },
+    static: "/dist/",
     historyApiFallback: true,
     port: 3000,
     open: true,

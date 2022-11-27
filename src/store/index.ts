@@ -1,3 +1,5 @@
+import { photosSlice } from "./photos/index";
+import { todosSlice } from "./todos/index";
 import { albumsSlice } from "./albums/index";
 import { commentsSlice } from "./comments/index";
 import { configureStore } from "@reduxjs/toolkit";
@@ -8,6 +10,8 @@ export const store = configureStore({
     posts: postsSlice.reducer,
     comments: commentsSlice.reducer,
     albums: albumsSlice.reducer,
+    todos: todosSlice.reducer,
+    photos: photosSlice.reducer,
   },
 });
 
