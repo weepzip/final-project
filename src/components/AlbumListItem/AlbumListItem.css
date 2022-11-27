@@ -6,4 +6,5 @@
   padding:var(--primary-padding);
   border-radius: var(--primary-br);
   background: var(--primary-bgc);
+  box-shadow: var(--main-shadow);
 }

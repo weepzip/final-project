@@ -49,7 +49,6 @@ export const Todo = ({
       onDrag={handleDrag}
       onDragEnd={handleDragEnd}
     >
-      <input type="checkbox" checked={todo.completed} />
       <span>{todo.title}</span>
     </div>
   );

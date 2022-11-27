@@ -5,6 +5,7 @@
   padding: var(--primary-padding);
   border-radius: var(--primary-br);
   background: var(--tertiary-bgc);
+  box-shadow: var(--main-shadow);
   cursor: grab;
 }
 

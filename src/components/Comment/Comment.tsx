@@ -1,19 +1,38 @@
-import { IComment } from "interfaces";
+import { useAppSelector } from "../../hooks";
 import React from "react";
+import { selectCommentById } from "../../store/comments/selectors";
 import s from "./Comment.css";
 
 interface CommentProps {
-  comment: IComment;
+  commentId: string | number;
+  reply?: boolean;
 }
 
-export const Comment = ({ comment }: CommentProps): JSX.Element | null => {
+export const Comment = ({
+  commentId,
+  reply = false,
+}: CommentProps): JSX.Element | null => {
+  const comment = useAppSelector((state) =>
+    selectCommentById(state, { commentId })
+  );
+
   if (!comment) {
     return null;
   }
+
   return (
-    <div className={s.comment}>
-      <div className={s.header}>{comment.name}</div>
+    <div className={`${s.comment} ${reply ? s.replied : null}`}>
+      <div className={s.header}>
+        <h3>{comment.name}</h3>
+      </div>
       <div className={s.body}>{comment.body}</div>
+      <div className={s.footer}>
+        {/* <span>
+          {comment.reply?.map((commentId) => (
+            <Comment commentId={commentId} />
+          ))}
+        </span> */}
+      </div>
     </div>
   );
 };

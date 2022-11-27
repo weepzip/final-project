@@ -7,9 +7,21 @@ import {
 } from "@reduxjs/toolkit";
 import { LoadingStatuses } from "../../constants/LoadingStatuses";
 import axios from "axios";
+import { clearNewPostForm } from "../post";
 
 type Entities = {
   [key: string | number]: IPost;
+};
+
+export type PostCreate = {
+  title: string;
+  body: string;
+  userId: string | number;
+};
+
+type PostCreateResponse = {
+  body: PostCreate;
+  id: string | number;
 };
 
 type PostsState = {
@@ -67,6 +79,32 @@ export const deletePost = createAsyncThunk<
   return postId;
 });
 
+export const createPost = createAsyncThunk<
+  IPost,
+  void,
+  { state: RootState; rejectValue: string }
+>("post/createPost", async (_, { getState, rejectWithValue, dispatch }) => {
+  const { newPost } = getState().post;
+
+  const response = await axios.post<PostCreateResponse>(
+    "https://jsonplaceholder.typicode.com/posts",
+    {
+      body: JSON.stringify(newPost),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    }
+  );
+
+  if (response.status !== 201) {
+    return rejectWithValue(LoadingStatuses.failed);
+  }
+
+  dispatch(clearNewPostForm());
+
+  return { ...response.data.body, id: response.data.id } as IPost;
+});
+
 const postsEntityAdapter = createEntityAdapter<IPost>({
   selectId: (post) => post.id,
 });
@@ -75,9 +113,14 @@ export const postsSlice = createSlice({
   name: "posts",
   initialState: postsEntityAdapter.getInitialState({
     status: LoadingStatuses.idle,
+    creatingStatus: LoadingStatuses.idle,
     deletingStatus: LoadingStatuses.idle,
   }),
-  reducers: {},
+  reducers: {
+    updatePostLocaly: (state, { payload }) => {
+      postsEntityAdapter.updateOne(state, payload);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
@@ -101,6 +144,18 @@ export const postsSlice = createSlice({
         if (payload) {
           state.deletingStatus = payload;
         }
+      })
+      .addCase(createPost.pending, (state) => {
+        state.creatingStatus = LoadingStatuses.inProgress;
+      })
+      .addCase(createPost.fulfilled, (state, { payload }) => {
+        postsEntityAdapter.addOne(state, payload);
+        state.creatingStatus = LoadingStatuses.success;
+      })
+      .addCase(createPost.rejected, (state, { payload }) => {
+        state.creatingStatus = LoadingStatuses.failed;
       });
   },
 });
+
+export const { updatePostLocaly } = postsSlice.actions;

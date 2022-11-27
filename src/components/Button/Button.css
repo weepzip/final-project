@@ -6,17 +6,32 @@
 .secondary {
   color: var(--primary-text-color);
   border-color: var(--primary-text-color);
+}
 
+.secondary:hover {
+  background: var(--hover-bgc);
 }
 
 .delete {
   border-color: var(--reject-color);
+  color: var(--reject-color);
+}
+
+.delete:hover {
   background: var(--reject-color);
   color: var(--secondary-text-color);
 }
 
 .submit {
   border-color: var(--submit-color);
+  color: var(--submit-color);
+}
+
+.submit:hover {
   color: var(--secondary-text-color);
   background: var(--submit-color);
+}
+
+button:disabled {
+  background: var(--light-gray);
 }

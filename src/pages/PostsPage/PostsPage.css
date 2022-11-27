@@ -1,7 +1,24 @@
-.posts {
+.posts,
+.body {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: start;
   gap: var(--primary-gap);
+}
+
+.body {
+  flex-direction: column-reverse;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--primary-gap);
+  padding: var(--primary-padding);
+  background: var(--primary-bgc);
+  border-radius: var(--secondary-br);
+  box-shadow: var(--main-shadow);
 }

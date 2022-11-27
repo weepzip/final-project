@@ -1,0 +1,14 @@
+.post {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  gap: var(--primary-gap);
+  padding: var(--primary-padding);
+  border-radius: var(--secondary-br);
+  background: var(--primary-bgc);
+  box-shadow: var(--main-shadow);
+}
+

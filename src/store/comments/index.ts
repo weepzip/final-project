@@ -1,4 +1,4 @@
-import { selectIsPostCommentsLoaded } from "./selectors";
+import { IComment } from "./../../interfaces/index";
 import axios from "axios";
 import { LoadingStatuses } from "./../../constants/LoadingStatuses";
 import {
@@ -6,7 +6,6 @@ import {
   createSlice,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
-import { IComment } from "../../interfaces/index";
 import { RootState } from "../index";
 
 export const fetchComments = createAsyncThunk<
@@ -14,10 +13,6 @@ export const fetchComments = createAsyncThunk<
   string | number,
   { state: RootState; rejectValue: string }
 >("comments/fetchComments", async (postId, { getState, rejectWithValue }) => {
-  if (selectIsPostCommentsLoaded(getState(), { postId })) {
-    return rejectWithValue(LoadingStatuses.earlyAdded);
-  }
-
   const response = await axios.get<IComment[]>(
     `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
   );
@@ -25,6 +20,20 @@ export const fetchComments = createAsyncThunk<
   if (response.status !== 200) {
     return rejectWithValue(LoadingStatuses.failed);
   }
+
+  // primitive try to create replied comments
+  const getRandom = (num: number) => Math.ceil(Math.random() * (num - 1));
+
+  for (const comment of response.data) {
+    const count = getRandom(response.data.length);
+    comment.reply = [] as number[];
+
+    for (let i = 0; i <= count; i++) {
+      const random = getRandom(response.data.length);
+      comment.reply.push(random);
+    }
+  }
+  // =======
 
   return response.data as IComment[];
 });
@@ -35,7 +44,7 @@ export const commentsSlice = createSlice({
   name: "comments",
   initialState: commentsEntityAdapter.getInitialState({
     status: LoadingStatuses.idle,
-    postIds: [] as Array<string | number>,
+    raw: [] as IComment[],
   }),
   reducers: {},
   extraReducers: (builder) => {
@@ -44,9 +53,10 @@ export const commentsSlice = createSlice({
         state.status = LoadingStatuses.inProgress;
       })
       .addCase(fetchComments.fulfilled, (state, { payload }) => {
+        commentsEntityAdapter.removeAll(state);
         commentsEntityAdapter.setMany(state, payload);
         state.status = LoadingStatuses.success;
-        state.postIds.push(payload[0].postId);
+        state.raw = [...payload];
       })
       .addCase(fetchComments.rejected, (state, { payload }) => {
         state.status = LoadingStatuses.failed;

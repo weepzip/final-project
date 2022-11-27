@@ -28,13 +28,15 @@ export const PostsPage = (): JSX.Element => {
 
   return (
     <div className={s.posts}>
-      <div>
+      <h1>Posts</h1>
+      <div className={s.header}>
         <NewPost />
       </div>
-      <div>Posts</div>
-      {posts.map((postId: string | number) => (
-        <PostListItem key={postId} postId={postId} />
-      ))}
+      <div className={s.body}>
+        {posts.map((postId: string | number) => (
+          <PostListItem key={postId} postId={postId} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -11,6 +11,7 @@ export interface IComment {
   name: string;
   email: string;
   body: string;
+  reply?: Array<string> | Array<number> | null;
 }
 
 export interface IAlbum {

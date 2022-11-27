@@ -1,17 +1,12 @@
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import React, { useState } from "react";
+import React from "react";
 import { PostId, selectPostById } from "../../store/posts/selectors";
 import s from "./PostListItem.css";
 import { IPost } from "../../interfaces/index";
 import { Button } from "../Button/Button";
 import { deletePost } from "../../store/posts";
 import { ButtonTypes } from "../../constants/ButtonTypes";
-import { fetchComments } from "../../store/comments/index";
-import {
-  selectCommentsByPostId,
-  selectIsCommentLoading,
-} from "../../store/comments/selectors";
-import { Comment } from "../Comment/Comment";
+import { Link } from "react-router-dom";
 
 interface PostListItemProps {
   postId: PostId;
@@ -20,51 +15,38 @@ interface PostListItemProps {
 export const PostListItem = ({
   postId,
 }: PostListItemProps): JSX.Element | null => {
-  const [commentsIsOpened, toggleComments] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const post = useAppSelector((state) => selectPostById(state, { postId }));
-  const commentsIsLoading = useAppSelector(selectIsCommentLoading);
-  const comments = useAppSelector((state) =>
-    selectCommentsByPostId(state, { postId })
-  );
 
   if (!postId || !post) {
     return null;
   }
 
-  const { userId, title } = post as IPost;
-
-  const handleClick = () => {
-    toggleComments(!commentsIsOpened);
-    dispatch(fetchComments(postId));
-  };
+  const { id, userId, title, body } = post as IPost;
 
   return (
     <div className={s.post}>
-      <div className={s.header}>{userId}</div>
-      <div className={s.body}>{title}</div>
+      <div className={s.header}>
+        <Link to={`${id}`}>
+          <h2>{title}</h2>
+        </Link>
+      </div>
+      <div className={s.body}>
+        <p>{body}</p>
+      </div>
       <div className={s.footer}>
-        <Button onClick={() => {}} className={ButtonTypes.secondary}>
+        <Link to={`${id}/edit`} className={s.link}>
           Edit
-        </Button>
+        </Link>
         <Button
           onClick={() => dispatch(deletePost(postId))}
           className={ButtonTypes.delete}
         >
           Delete
         </Button>
-        <Button className={ButtonTypes.secondary} onClick={handleClick}>
+        {/* <Button className={ButtonTypes.secondary} onClick={handleClick}>
           Comments
-        </Button>
-      </div>
-      <div className={s.comments}>
-        {!commentsIsOpened ? null : commentsIsLoading ? (
-          <div>Loading...</div>
-        ) : !comments?.length ? null : (
-          comments.map((comment) =>
-            comment ? <Comment key={comment.id} comment={comment} /> : null
-          )
-        )}
+        </Button> */}
       </div>
     </div>
   );

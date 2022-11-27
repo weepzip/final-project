@@ -1,3 +1,4 @@
+import { postSlice } from "./post/index";
 import { photosSlice } from "./photos/index";
 import { todosSlice } from "./todos/index";
 import { albumsSlice } from "./albums/index";
@@ -8,6 +9,7 @@ import { postsSlice } from "./posts";
 export const store = configureStore({
   reducer: {
     posts: postsSlice.reducer,
+    post: postSlice.reducer,
     comments: commentsSlice.reducer,
     albums: albumsSlice.reducer,
     todos: todosSlice.reducer,

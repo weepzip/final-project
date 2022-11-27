@@ -2,14 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--primary-gap);
-  border-radius: var(--primary-br);
-  background-color: var(--tertiary-bgc);
-}
-
-.comment > div {
   padding: var(--primary-padding);
+  border-radius: 0  var(--secondary-br) var(--secondary-br) var(--secondary-br);
+  background-color: var(--primary-bgc);
+  box-shadow: var(--main-shadow);
 }
 
-.comment > div:not(:last-child) {
-  border-bottom: 1px solid var(--light-gray);
+.comment.replied {
+  margin-left: calc(var(--secondary-gap) * 2);
 }

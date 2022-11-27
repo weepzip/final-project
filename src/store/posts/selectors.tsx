@@ -8,8 +8,20 @@ export const selectPostsModule = (state: RootState) => state.posts;
 export const selectPostsStatus = (state: RootState) =>
   selectPostsModule(state).status;
 
+export const selectPostCreatingStatus = (state: RootState) =>
+  selectPostsModule(state).creatingStatus;
+
+export const selectPostDeletingStatus = (state: RootState) =>
+  selectPostsModule(state).deletingStatus;
+
 export const selectIsPostFetching = (state: RootState) =>
   selectPostsStatus(state) === LoadingStatuses.inProgress;
+
+export const selectIsPostCreating = (state: RootState) =>
+  selectPostCreatingStatus(state) === LoadingStatuses.inProgress;
+
+export const selectIsPostDeleting = (state: RootState) =>
+  selectPostDeletingStatus(state) === LoadingStatuses.inProgress;
 
 export const selectPostsEntities = (state: RootState) =>
   selectPostsModule(state).entities;
